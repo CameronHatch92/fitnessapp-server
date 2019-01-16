@@ -1,0 +1,1 @@
+module.exports = () => 'Fitness App API implemented with GraphQL';
