@@ -12,3 +12,19 @@ CREATE TABLE users (
 INSERT INTO users (username, email, password) VALUES
 ('fitbitlover', 'fbl@test.com', 'password'),
 ('newUser', 'user@example.com', 'password');
+
+CREATE TYPE goal_category AS ENUM ('Fitness', 'Health');
+CREATE TYPE goal_type AS ENUM ('Total', 'Work Up To')
+
+CREATE TABLE goals (
+  id serial PRIMARY KEY,
+  user_id int REFERENCES users(id) ON DELETE CASCADE,
+  category goal_category, 
+  start_date DATE,
+  end_date DATE,
+  title TEXT,
+  complete NUMERIC,
+  goal NUMERIC,
+  unit TEXT,
+  type goal_type
+);
