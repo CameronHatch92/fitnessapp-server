@@ -1,6 +1,9 @@
 -- psql -U Cameron -d fitnessapp -f /Users/Cameron/fitnessApp/fitness-server/db/fitness-seed.sql
 
+DROP TABLE IF EXISTS goals;
 DROP TABLE IF EXISTS users;
+DROP TYPE IF EXISTS goal_category;
+DROP TYPE IF EXISTS goal_type;
 
 CREATE TABLE users (
   id serial PRIMARY KEY,
@@ -14,7 +17,7 @@ INSERT INTO users (username, email, password) VALUES
 ('newUser', 'user@example.com', 'password');
 
 CREATE TYPE goal_category AS ENUM ('Fitness', 'Health');
-CREATE TYPE goal_type AS ENUM ('Total', 'Work Up To')
+CREATE TYPE goal_type AS ENUM ('Total', 'Work Up To');
 
 CREATE TABLE goals (
   id serial PRIMARY KEY,
