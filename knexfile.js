@@ -3,7 +3,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: process.env.DATABASE_URL || 'postgres://localhost/api',
+    connection: process.env.DATABASE_URL || 'postgres://localhost/fitnessapp',
     debug: true,
     pool: {min: 1, max: 2}
   },
