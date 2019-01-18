@@ -1,3 +1,5 @@
+scalar Date
+
 type Query {
   info: String!
   user(id: ID): User
@@ -8,4 +10,17 @@ type User {
   username: String
   email: String
   password: String
+  goals: [Goal]
+}
+
+type Goal {
+  id: ID
+  start_date: Date
+  end_date: Date
+  category: String
+  title: String
+  complete: Int
+  goal: Int
+  unit: String
+  type: String
 }
