@@ -9,7 +9,7 @@ module.exports = async (root, args) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const id = await knex('users')
-    .insert({password, username, email})
+    .insert({password: hashedPassword, username, email})
     .returning('id');
 
   const user = {id: id[0], username};  
