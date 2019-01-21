@@ -9,6 +9,16 @@ type Query {
 type Mutation {
   signup(username: String!, email: String!, password: String!): String!
   login(username: String!, password: String!): String!
+  addGoal(
+    title: String!,
+    category: String!,
+    goal: Int,
+    complete: Int,
+    unit: String,
+    type: String,
+    start_date: Date,
+    end_date: Date
+  ): Goal!
 }
 
 type User {
