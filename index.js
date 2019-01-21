@@ -8,18 +8,20 @@ const knex = require('./knex');
 
 const typeDefs = './schema.graphql';
 const Query = require('./resolvers/query');
+const Mutation = require('./resolvers/mutation');
 const { PORT } = require('./config');
 
 const resolvers = {
-  Query
-}
+  Query,
+  Mutation
+};
 
 const pubsub = new PubSub();
 
 const server = new GraphQLServer({
   typeDefs,
   resolvers
-})
+});
 
 // Create Express app
 const app = express();

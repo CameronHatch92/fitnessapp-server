@@ -2,20 +2,24 @@ scalar Date
 
 type Query {
   info: String!
-  user(id: ID): User
-  goal(id: ID): Goal
+  user(id: ID!): User!
+  goal(id: ID!): Goal!
+}
+
+type Mutation {
+  signup(username: String!, email: String!, password: String!): String!
 }
 
 type User {
-  id: ID
-  username: String
-  email: String
-  password: String
+  id: ID!
+  username: String!
+  email: String!
+  password: String!
   goals: [Goal]
 }
 
 type Goal {
-  id: ID
+  id: ID!
   start_date: Date
   end_date: Date
   category: String
