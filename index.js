@@ -28,7 +28,7 @@ const server = new GraphQLServer({
     isAuthorized: () => {
       const AuthHeader = incomingData.request.header('authorization');
       if(!AuthHeader){
-        throw('Unauthorized');
+        throw('Unauthorized!');
       }
       const token = AuthHeader.replace('Bearer ', '');
       const decodedToken = jwt.verify(token, JWT_SECRET);

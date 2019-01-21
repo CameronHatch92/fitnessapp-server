@@ -12,7 +12,7 @@ module.exports = async (root, args, context) => {
     throw('Goal not found');
   }
   if(goal.user_id !== userId){
-    throw('Unauthorized');
+    throw('Unauthorized!');
   }
   return goal;  
   

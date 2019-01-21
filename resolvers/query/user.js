@@ -1,8 +1,12 @@
 const axios = require('axios');
 const knex = require('../../knex');
 
-module.exports = async (root, args) => {
-
+module.exports = async (root, args, context) => {
+  const decodedToken = context.isAuthorized();
+  const userId = decodedToken.user.id;
+  if(args.id !== userId){
+    throw('Unauthorized!');
+  }
   const user = await knex.select('username', 'id', 'email')
     .from('users')
     .where({id: args.id})
