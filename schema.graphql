@@ -3,6 +3,7 @@ scalar Date
 type Query {
   info: String!
   user(id: ID): User
+  goal(id: ID): Goal
 }
 
 type User {
