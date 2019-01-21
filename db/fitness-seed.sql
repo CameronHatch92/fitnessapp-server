@@ -31,3 +31,9 @@ CREATE TABLE goals (
   unit TEXT,
   type goal_type
 );
+
+INSERT INTO goals (user_id, category, start_date, end_date, title,
+  complete, goal, unit, type) VALUES
+  (1, 'Fitness', '2019-1-1', '2019-2-1', 'Run 20 miles', 10, 20, 'miles', 'Total'),
+  (1, 'Health', '2019-1-1', '2019-4-1', 'Lose 5 Pounds', 2, 5, 'pounds', 'Total');
+  
