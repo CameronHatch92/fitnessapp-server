@@ -12,9 +12,11 @@ CREATE TABLE users (
   password TEXT NOT NULL 
 );
 
+-- hashed password for password123
+
 INSERT INTO users (username, email, password) VALUES
-('fitbitlover', 'fbl@test.com', 'password'),
-('newUser', 'user@example.com', 'password');
+('fitbitlover', 'fbl@test.com', '$2a$10$QP7MEsihzIGYkJjd1Ihopel0jjX7d2.L1e6rAsVLXu2gLjHLzFINO'),
+('newUser', 'user@example.com', '$2a$10$QP7MEsihzIGYkJjd1Ihopel0jjX7d2.L1e6rAsVLXu2gLjHLzFINO');
 
 CREATE TYPE goal_category AS ENUM ('Fitness', 'Health');
 CREATE TYPE goal_type AS ENUM ('Total', 'Work Up To');

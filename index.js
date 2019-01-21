@@ -5,11 +5,12 @@ const { GraphQLServer, PubSub } = require('graphql-yoga');
 const morgan = require('morgan');
 const cors = require('cors');
 const knex = require('./knex');
+const jwt = require('jsonwebtoken');
 
 const typeDefs = './schema.graphql';
 const Query = require('./resolvers/query');
 const Mutation = require('./resolvers/mutation');
-const { PORT } = require('./config');
+const { PORT, JWT_SECRET } = require('./config');
 
 const resolvers = {
   Query,
@@ -20,7 +21,20 @@ const pubsub = new PubSub();
 
 const server = new GraphQLServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: incomingData => ({
+    incomingData,
+    pubsub,
+    isAuthorized: () => {
+      const AuthHeader = incomingData.request.header('authorization');
+      if(!AuthHeader){
+        throw('Unauthorized');
+      }
+      const token = AuthHeader.replace('Bearer ', '');
+      const decodedToken = jwt.verify(token, JWT_SECRET);
+      return decodedToken;
+    }
+  })
 });
 
 // Create Express app
