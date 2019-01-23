@@ -22,6 +22,10 @@ module.exports = async (root, args, context) => {
     .where({ 'id': goalId })
     .first();
 
+  if(!goalCheck){
+    throw('Goal not found.')
+  }  
+
   if (goalCheck.user_id !== userId) {
     throw ('Unauthorized');
   }
@@ -30,9 +34,6 @@ module.exports = async (root, args, context) => {
     .del()
     .where({'id': goalId});
 
-  if(deletedNum>0){
-    return 'Goal was deleted.'
-  }
-  return 'Invalid goalId'
+  return 'Goal was deleted';
 
 }

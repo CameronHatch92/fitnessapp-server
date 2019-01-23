@@ -25,6 +25,10 @@ module.exports = async (root, args, context) => {
     .where({ 'id': goalId })
     .first();
 
+  if (!goalCheck) {
+    throw ('Goal not found.')
+  }
+  
   if (goalCheck.user_id !== userId) {
     throw ('Unauthorized');
   }
