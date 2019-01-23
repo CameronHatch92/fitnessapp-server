@@ -4,7 +4,7 @@ const knex = require('../../knex');
 module.exports = async (root, args, context) => {
   const decodedToken = context.isAuthorized();
   const userId = decodedToken.user.id;
-  if(args.id !== userId){
+  if(args.id != userId){
     throw('Unauthorized!');
   }
   const user = await knex.select('username', 'id', 'email')
@@ -12,8 +12,9 @@ module.exports = async (root, args, context) => {
     .where({id: args.id})
     .first();
 
-  const goals = await knex.select('title', 'category', 'start_date', 'end_date',
-    'goal', 'complete', 'id', 'unit', 'type')
+  // const goals = await knex.select('title', 'category', 'start_date', 'end_date',
+  //   'goal', 'complete', 'id', 'unit', 'type')
+  const goals = await knex.select('*')
     .from('goals')
     .where({'user_id': args.id});
   console.log(user);  
