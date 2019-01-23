@@ -30,6 +30,9 @@ type Mutation {
     start_date: Date,
     end_date: Date 
   ): Goal!
+  deleteGoal(
+    id: ID!
+  ): String
 }
 
 type User {

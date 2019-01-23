@@ -12,12 +12,9 @@ module.exports = async (root, args, context) => {
     throw ('Unauthorized!');
   }
 
-  const updateObj = {};
-  const updateableFields = ['title', 'end_date', 'start_date', 'complete', 'goal', 'unit', 'type'];
-
   const goalId = args.id;
   if (!goalId) {
-    throw ('Need goalId to update')
+    throw ('Need goalId to delete')
   }
 
   const goalCheck = await knex.select('user_id')
@@ -29,18 +26,13 @@ module.exports = async (root, args, context) => {
     throw ('Unauthorized');
   }
 
-  updateableFields.forEach(field => {
-    if (field in args) {
-      updateObj[field] = args[field];
-    }
-  });
-  const updatedGoal = await knex('goals')
-    .update(updateObj)
-    .where({ 'id': goalId, 'user_id': userId })
-    .returning('*');
+  const deletedNum = await knex('goals')
+    .del()
+    .where({'id': goalId});
 
-  if (!updatedGoal[0]) {
-    throw ('Unable to update.')
+  if(deletedNum>0){
+    return 'Goal was deleted.'
   }
-  return updatedGoal[0];
+  return 'Invalid goalId'
+
 }
