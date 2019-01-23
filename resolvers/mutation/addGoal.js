@@ -28,15 +28,9 @@ module.exports = async (root, args, context) => {
     user_id: userId
   }
   
-  const goalId = await knex('goals')
+  const insertedGoal = await knex('goals')
     .insert(newGoal)
-    .returning('id');
-
-  const goalToAdd = await knex.select('title', 'category', 'start_date', 'end_date',
-  'goal', 'complete', 'id', 'unit', 'type', 'user_id') 
-    .from('goals')
-    .where({id: goalId[0]})
-    .first(); 
+    .returning('*');
     
-  return goalToAdd;   
+  return insertedGoal[0];   
 }
