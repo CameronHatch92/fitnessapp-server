@@ -19,6 +19,17 @@ type Mutation {
     start_date: Date,
     end_date: Date
   ): Goal!
+  updateGoal(
+    id: ID!,
+    title: String,
+    category: String,
+    goal: Int,
+    complete: Int,
+    unit: String,
+    type: String,
+    start_date: Date,
+    end_date: Date 
+  ): Goal!
 }
 
 type User {
